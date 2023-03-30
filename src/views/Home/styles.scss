@@ -1,0 +1,138 @@
+$heigth-key: 250px;
+$width-key: 60px;
+$heigth-sharp-key: $heigth-key * 0.65;
+$width-sharp-key: 60px;
+
+.home-page {
+  overflow-x: hidden;
+  .settings-modal {
+    position: fixed;
+    left: calc(100% - 45px - 20px);
+    display: flex;
+    margin: 10px;
+    transition: transform 0.2s ease-out;
+
+    &.show {
+      transform: translateX(calc(-100% + 45px));
+      .modal-toggler {
+        button {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    .modal-toggler {
+      button {
+        height: 45px;
+        width: 45px;
+        margin-right: 10px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 24px;
+        font-weight: 600;
+        background-color: white;
+        transition: transform 0.2s ease-out;
+
+        i {
+          &::before {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          font-size: 24px;
+        }
+      }
+    }
+    .modal-body {
+      padding: 10px;
+      border-radius: 5px;
+      background-color: white;
+      h1 {
+      }
+    }
+  }
+
+  .scale-finder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+
+    h1 {
+      font-size: 72px;
+      color: white;
+    }
+
+    h2 {
+      margin-bottom: 60px;
+      font-size: 18px;
+      color: white;
+    }
+
+    .piano {
+      display: flex;
+
+      .piano-keyboard {
+        display: flex;
+        gap: 5px;
+        padding: 10px;
+        border-radius: 15px;
+
+        .piano-key {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          height: $heigth-key;
+          width: $width-key;
+          padding: 10px 0;
+          border-radius: 5px;
+          background-color: white;
+          box-shadow: 0 0 10px rgba(black, 0.25);
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: 600;
+          user-select: none;
+          transition: background-color 0.2s;
+
+          &.sharp {
+            z-index: 1;
+            height: $heigth-sharp-key;
+            width: $width-sharp-key;
+            margin: 0 -32.5px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            background-color: black;
+            color: white;
+          }
+
+          &.selected {
+            background-color: $color-selected-key;
+
+            &.sharp {
+              background-color: $color-selected-sharp-key;
+            }
+          }
+
+          p {
+          }
+        }
+      }
+    }
+
+    button {
+      margin-top: 60px;
+      padding: 6px 15px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 32px;
+      font-weight: 600;
+      background-color: white;
+    }
+  }
+}

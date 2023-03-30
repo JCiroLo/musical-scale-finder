@@ -1,0 +1,75 @@
+$heigth-key: 70px;
+$width-key: 20px;
+$heigth-sharp-key: $heigth-key * 0.65;
+$width-sharp-key: 20px;
+
+.piano-notes {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+
+  .scale-name {
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+    color: white;
+  }
+
+  .piano-keyboard {
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 15px;
+
+    .piano-key {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: $heigth-key;
+      width: $width-key;
+      padding: 2px 0;
+      border-radius: 2px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(black, 0.25);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      user-select: none;
+      transition: background-color 0.2s;
+
+      &.sharp {
+        z-index: 1;
+        height: $heigth-sharp-key;
+        width: $width-sharp-key;
+        margin: 0 -13px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: black;
+        color: white;
+      }
+
+      &.selected {
+        background-color: $color-selected-key;
+
+        &.sharp {
+          background-color: $color-selected-sharp-key;
+        }
+      }
+
+      p {
+        display: none;
+      }
+    }
+  }
+
+  .notes {
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+
+    .piano-note {
+      margin: 0 10px;
+      color: white;
+    }
+  }
+}

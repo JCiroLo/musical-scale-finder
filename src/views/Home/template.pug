@@ -1,0 +1,30 @@
+.home-page
+  Loader(:show="loadingNotes")
+  .settings-modal(:class="{show: settings}")
+    .modal-toggler
+      button(@click="settings = !settings")
+        transition(name="fade" mode="out-in")
+          i(v-if="settings").fas.fa-chevron-up.fa-fw
+          i(v-else).fas.fa-cog.fa-fw
+    .modal-body 
+      h3 Settings 
+      .input-group
+        ToggleButton(v-model="settings")
+
+  .scale-finder
+    h1 Musical Scale Finder
+    h2
+      | By 
+      a(href="https://github.com/JCiroLo") JCiroLo
+    .piano
+      .piano-keyboard
+        .piano-key(
+          v-for="(value, key) in pianoKeys" 
+          :key="key" 
+          :class="{ sharp: value.sharp, selected: value.selected }" 
+          @click="value.selected = !value.selected"
+        )
+          p {{ key }} 
+    button Find!
+  .search-results
+    PianoNotes(scale="C Major" :notes="[0,1,0,1,1,0,0,1,0,1,1]")

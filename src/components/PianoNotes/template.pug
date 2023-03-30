@@ -1,0 +1,16 @@
+.piano-notes
+  .scale-name {{scale}}
+  .piano-keyboard
+    .piano-key(
+      v-for="(value, key) in pianoKeys" 
+      :key="key" 
+      :class="{ sharp: value.sharp, selected: notes[key] }" 
+    )
+      p {{ value.note }} 
+  .notes
+    .piano-note(
+      v-for="(note, index) in notes"
+      v-show="note"
+      :key="index"
+    )
+      span {{ pianoKeys[index].note }}

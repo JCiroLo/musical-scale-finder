@@ -1,0 +1,91 @@
+$color-spinner: #8d05d1d0;
+$color-background: #17051fe3;
+$spinner-radius: 100px;
+
+.loader {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  pointer-events: none;
+
+  transition: background-color 0.2s;
+
+  &.show {
+    pointer-events: all;
+    background-color: $color-background;
+    transition: background-color 0.5s 0.2s;
+
+    .loader-content {
+      animation: grow 0.25s linear forwards;
+    }
+  }
+
+  .loader-content {
+    position: relative;
+    width: $spinner-radius;
+    height: $spinner-radius;
+    animation: decrease 0.25s linear forwards;
+
+    .loader-spinner {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border: 10px solid transparent;
+      border-top: 10px solid $color-spinner;
+      border-radius: 50%;
+      animation: spin 2s infinite linear;
+    }
+
+    .loader-trail {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 10px solid rgba(white, 0.5);
+      border-radius: 50%;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes decrease {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  }
+
+  75% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
