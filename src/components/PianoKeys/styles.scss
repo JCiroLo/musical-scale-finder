@@ -5,21 +5,21 @@ $width-sharp-key: 20px;
 
 .piano-notes {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 10px 20px;
+  padding: $unit $unit * 4;
 
   .scale-name {
     display: flex;
-    justify-content: center;
-    padding: 0 40px;
+    width: min($unit * 24, 50vw);
     color: white;
   }
 
   .piano-keyboard {
     display: flex;
-    gap: 5px;
-    padding: 10px;
-    border-radius: 15px;
+    gap: $unit * 0.5;
+    padding: $unit;
+    border-radius: $unit;
 
     .piano-key {
       display: flex;
@@ -27,14 +27,10 @@ $width-sharp-key: 20px;
       align-items: flex-end;
       height: $heigth-key;
       width: $width-key;
-      padding: 2px 0;
-      border-radius: 2px;
+      border-radius: $unit * 0.25;
       background-color: white;
       box-shadow: 0 0 10px rgba(black, 0.25);
       cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      user-select: none;
       transition: background-color 0.2s;
 
       &.sharp {
@@ -54,10 +50,6 @@ $width-sharp-key: 20px;
         &.sharp {
           background-color: $color-selected-sharp-key;
         }
-      }
-
-      p {
-        display: none;
       }
     }
   }

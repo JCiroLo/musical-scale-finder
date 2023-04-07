@@ -15,7 +15,7 @@
     h1 Musical Scale Finder
     h2
       | By 
-      a(href="https://github.com/JCiroLo") JCiroLo
+      a(href="https://github.com/JCiroLo" target="_blank") JCiroLo
     .piano
       .piano-keyboard
         .piano-key(
@@ -24,7 +24,7 @@
           :class="{ sharp: value.sharp, selected: value.selected }" 
           @click="value.selected = !value.selected"
         )
-          p {{ key }} 
-    button Find!
-  .search-results
-    PianoNotes(scale="C Major" :notes="[0,1,0,1,1,0,0,1,0,1,1]")
+          p {{ formatNote(key) }} 
+    button(@click="findScales") Find!
+  .search-results(ref="results")
+    PianoKeys(v-for="(result, index) in results" :key="index" :tonic="result.tonic" :scale="result.scale" :keys="result.keys")

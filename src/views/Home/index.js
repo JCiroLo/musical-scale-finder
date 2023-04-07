@@ -1,11 +1,13 @@
 import ToggleButton from '@vueform/toggle'
 import * as Tone from 'tone'
+
+import Scale from '../../models/Scale'
 import Keys from '../../assets/piano'
 
 let piano = null
 
 export default {
-  name: 'ScaleFinder',
+  name: 'musical-scale-finder',
   components: {
     ToggleButton
   },
@@ -31,7 +33,7 @@ export default {
         As: { sharp: true, selected: false },
         B: { sharp: false, selected: false }
       },
-      pianorResults: []
+      results: []
     }
   },
   watch: {
@@ -115,33 +117,10 @@ export default {
     }
   },
   methods: {
-    handleKeyDown (e) {
-      console.log(e)
+    formatNote (note) {
+      return note.replace('s', '#')
     },
-    handleKeyUp () {}
-  },
-  beforeMount () {
-    piano = new Tone.Sampler({
-      urls: {
-        C5: Keys['C'],
-        'C#5': Keys['Cs'],
-        D5: Keys['D'],
-        'D#5': Keys['Ds'],
-        E5: Keys['E'],
-        F5: Keys['F'],
-        'F#5': Keys['Fs'],
-        G5: Keys['G'],
-        'G#5': Keys['Gs'],
-        A5: Keys['A'],
-        'A#5': Keys['As'],
-        B5: Keys['B']
-      },
-      onload: () => {
-        this.loadingNotes = false
-      }
-    }).toDestination()
-
-    window.addEventListener('keydown', ({ code }) => {
+    handleKeyDown ({ code }) {
       switch (code) {
         case 'KeyQ':
           this.pianoKeys.C.selected = !this.pianoKeys.C.selected
@@ -180,9 +159,43 @@ export default {
           this.pianoKeys.B.selected = !this.pianoKeys.B.selected
           break
       }
-    })
+    },
+    findScales () {
+      const keys = Object.values(this.pianoKeys).map(key =>
+        key.selected ? 1 : '-'
+      )
+
+      this.results = Scale.filter({ keys })
+
+      setTimeout(() => {
+        this.$refs['results'].scrollIntoView({ behavior: 'smooth' })
+      }, 50)
+    }
+  },
+  beforeMount () {
+    piano = new Tone.Sampler({
+      urls: {
+        C5: Keys['C'],
+        'C#5': Keys['Cs'],
+        D5: Keys['D'],
+        'D#5': Keys['Ds'],
+        E5: Keys['E'],
+        F5: Keys['F'],
+        'F#5': Keys['Fs'],
+        G5: Keys['G'],
+        'G#5': Keys['Gs'],
+        A5: Keys['A'],
+        'A#5': Keys['As'],
+        B5: Keys['B']
+      },
+      onload: () => {
+        this.loadingNotes = false
+      }
+    }).toDestination()
+
+    window.addEventListener('keydown', this.handleKeyDown)
   },
   beforeDestroy () {
-    window.removeEventListener('keydown', () => {})
+    window.removeEventListener('keydown', this.handleKeyDown)
   }
 }

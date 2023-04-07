@@ -18,12 +18,12 @@ body {
   width: 10px;
 
   &-track {
-    background: white;
+    background: $color-background;
   }
 
   &-thumb {
-    background: #888;
-    border-radius: 4px;
+    background: #444;
+    border-radius: 10px;
 
     &:hover {
       background: #555;
