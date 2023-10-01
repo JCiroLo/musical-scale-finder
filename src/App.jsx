@@ -1,5 +1,5 @@
-import { Box, Button, Container, Link, Typography } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
+import { Box, Button, Container, Divider, Link, Typography } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
 import $Piano from "./lib/Piano";
 import Scale from "./components/Scale";
 
@@ -76,16 +76,37 @@ function App() {
 
   return (
     <>
-      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={8} minHeight="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        gap={8}
+        minHeight="100vh"
+        padding={2}
+      >
         <Box>
-          <Typography variant="h1" textAlign="center">
+          <Typography variant="h1" textAlign="center" fontSize={{ xs: "3rem", md: "6rem" }}>
             Musical Scale Finder
           </Typography>
           <Typography variant="subtitle1" fontWeight={500} textAlign="center">
-            By <Link href="https://github.com/JCiroLo" target="_blank">JCiroLo</Link>
+            By{" "}
+            <Link href="https://github.com/JCiroLo" target="_blank">
+              JCiroLo
+            </Link>
           </Typography>
         </Box>
-        <Box position="relative" display="flex" gap={1} sx={{ perspective: 5000 }}>
+        <Box
+          position="relative"
+          display="flex"
+          gap={1}
+          sx={(t) => ({
+            perspective: 5000,
+            [t.breakpoints.down("md")]: {
+              zoom: 0.75,
+            },
+          })}
+        >
           {Object.keys($Piano.notes).map((key, index) => {
             const note = $Piano.notes[key];
             return (
@@ -145,7 +166,10 @@ function App() {
       <Container id="scale-container">
         <Box display="flex" flexDirection="column" gap={2}>
           {filteredScales.map((scale, index) => (
-            <Scale key={index} name={scale.scale} tonic={scale.tonic} keys={scale.keys} />
+            <React.Fragment key={index}>
+              <Scale name={scale.scale} tonic={scale.tonic} keys={scale.keys} />
+              <Divider sx={{ opacity: 0.5 }} />
+            </React.Fragment>
           ))}
         </Box>
       </Container>

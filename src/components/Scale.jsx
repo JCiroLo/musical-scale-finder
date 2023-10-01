@@ -13,9 +13,16 @@ const Scale = memo(function Scale({ name, tonic, keys }) {
       sx={(t) => ({
         transition: t.transitions.create(["background"]),
         "&:hover": { bgcolor: alpha(t.palette.primary.main, 0.2) },
+        [t.breakpoints.down("md")]: {
+          flexDirection: "column",
+          gap: 2,
+        },
       })}
     >
-      <Typography width="20%">
+      <Typography
+        width={{ xs: "100%", md: "20%" }}
+        sx={(t) => ({ [t.breakpoints.down("md")]: { textAlign: "center" } })}
+      >
         {tonic} {name}
       </Typography>
       <Box position="relative" display="flex" gap={0.5} sx={{ perspective: 1000 }}>
