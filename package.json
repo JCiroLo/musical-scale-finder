@@ -1,34 +1,30 @@
 {
-  "name": "scale-finder",
-  "version": "0.1.0",
+  "name": "musical-scale-finder-react",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@tonejs/piano": "^0.2.1",
-    "@vueform/toggle": "^2.1.2",
-    "core-js": "^3.6.5",
-    "pug-plain-loader": "^1.1.0",
-    "tone": "^14.7.77",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0",
-    "webmidi": "^3.0.21"
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/lab": "^5.0.0-alpha.146",
+    "@mui/material": "^5.14.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.12",
-    "@vue/cli-plugin-router": "~4.5.12",
-    "@vue/cli-plugin-vuex": "~4.5.12",
-    "@vue/cli-service": "~4.5.12",
-    "@vue/compiler-sfc": "^3.0.0",
-    "sass": "^1.53.0",
-    "sass-loader": "^8.0.2"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "vite": "^4.4.5"
+  }
 }
